@@ -1,35 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Usuarios</title>
+    <title>Gestión de Residencias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="email"],
+        input[type="password"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
 </head>
 <body>
-    <h1>Usuarios</h1>
-    <a href="{{ route('usuarios.create') }}">Agregar Nuevo Usuario</a>
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($usuarios as $usuario)
-                <tr>
-                    <td>{{ $usuario->name }}</td>
-                    <td>{{ $usuario->email }}</td>
-                    <td>
-                        <a href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a>
-                        <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>Gestión de Residencias</h1>
+        <form action="{{ route('usuarios.create') }}" method="POST">
+            @csrf
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <div class="button-container">
+                <button type="submit">Iniciar Sesión</button>
+                <a href="{{ route('usuarios.create') }}">
+                    <button type="button">Crear Usuario</button>
+                </a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

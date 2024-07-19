@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Agregar Usuario</title>
+    <title>Crear Usuario</title>
 </head>
 <body>
-    <h1>Agregar Usuario</h1>
+    <h1>Crear Usuario</h1>
     <form action="{{ route('usuarios.store') }}" method="POST">
         @csrf
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <!-- Otros campos según tus necesidades -->
+        <input type="text" name="name" placeholder="Nombre" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
         <button type="submit">Guardar</button>
     </form>
-    <a href="{{ route('usuarios.index') }}">Volver</a>
 </body>
 </html>
