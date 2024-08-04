@@ -5,11 +5,11 @@
 </head>
 <body>
     <h1>Residencias</h1>
-    <a href="{{ route('residencias.create') }}">Agregar Nueva Residencia</a>
+    <a href="{{ route('residencias.create') }}">Agregar residencia</a>
     <table>
         <thead>
             <tr>
-                <th>Nombre</th>
+                <th>Nombre </th>
                 <th>Acciones</th>
             </tr>
         </thead>
