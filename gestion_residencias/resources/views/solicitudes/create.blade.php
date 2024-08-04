@@ -4,6 +4,7 @@
     <title>Agregar Solicitud</title>
 </head>
 <body>
+    
     <h1>Agregar Solicitud</h1>
     <form action="{{ route('solicitudes.store') }}" method="POST">
         @csrf
