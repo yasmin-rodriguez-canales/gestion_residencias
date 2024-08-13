@@ -1,47 +1,30 @@
 <?php
-
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Usuario extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    // Especifica los campos que se pueden rellenar masivamente
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'nombre', // Nombre del usuario
+        'email', // Email del usuario
+        'contraseña', // Contraseña del usuario
+        'rol', // Rol del usuario
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    // Define la relación con el modelo Residencia
+    public function residencias()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(Residencia::class, 'dueno_id');
+    }
+
+    // Define la relación con el modelo Solicitud
+    public function solicitudes()
+    {
+        return $this->hasMany(Solicitud::class, 'estudiante_id');
     }
 }

@@ -43,15 +43,28 @@
             display: flex;
             justify-content: space-between;
         }
+        .error {
+            color: red;
+            text-align: center;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Gestión de Residencias</h1>
-        <form action="{{ route('usuarios.create') }}" method="POST">
+
+        <!-- Mensaje de error -->
+        @if(session('error'))
+            <div class="error">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <form action="{{ route('login') }}" method="POST">
             @csrf
             <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="password" name="contraseña" placeholder="Contraseña" required>
             <div class="button-container">
                 <button type="submit">Iniciar Sesión</button>
                 <a href="{{ route('usuarios.create') }}">

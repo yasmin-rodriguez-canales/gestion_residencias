@@ -1,76 +1,67 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
-    public function index()
+    // Método para mostrar el formulario de inicio de sesión
+    public function showLoginForm()
     {
-        $usuarios = Usuario::all();
-        return view('usuarios.index', compact('usuarios'));
+        return view('usuarios.index');
     }
 
+    // Método para manejar la autenticación del usuario
+    public function login(Request $request)
+    {
+        // Validar la solicitud
+        $request->validate([
+            'email' => 'required|email',
+            'contraseña' => 'required|string',
+        ]);
+
+        // Intentar autenticar al usuario
+        $credentials = $request->only('email', 'contraseña');
+        if (Auth::attempt($credentials)) {
+            // Si la autenticación es exitosa, redirigir a la vista principal
+            return redirect()->route('usuarios.inicio');
+        } else {
+            // Si la autenticación falla, redirigir a la página de inicio de sesión con un mensaje de error
+            return redirect()->route('usuarios.create')
+                ->withErrors(['error' => 'Credenciales incorrectas. Necesitas crear una cuenta.']);
+        }
+    }
+
+    // Método para mostrar el formulario de creación de usuario
     public function create()
     {
-        return view('usuarios.create');
+        // Obtener todos los usuarios para pasar a la vista
+        $usuarios = Usuario::all();
+        return view('usuarios.create', ['usuarios' => $usuarios]);
     }
 
+    // Método para almacenar un nuevo usuario
     public function store(Request $request)
     {
+        // Validar la solicitud
         $request->validate([
-            'name' => 'required',
+            'nombre' => 'required|string|max:255',
             'email' => 'required|email|unique:usuarios,email',
-            'password' => 'required|min:6',
+            'contraseña' => 'required|string|min:8',
+            'rol' => 'required|string',
         ]);
 
-        $usuario = new Usuario();
-        $usuario->name = $request->name;
-        $usuario->email = $request->email;
-        $usuario->password = bcrypt($request->password);
-        $usuario->save();
-
-        return redirect()->route('usuarios.index')->with('success', 'Usuario creado correctamente.');
-    }
-
-    public function show($id)
-    {
-        $usuario = Usuario::findOrFail($id);
-        return view('usuarios.show', compact('usuario'));
-    }
-
-    public function edit($id)
-    {
-        $usuario = Usuario::findOrFail($id);
-        return view('usuarios.edit', compact('usuario'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:usuarios,email,' . $id,
-            'password' => 'nullable|min:6',
+        // Crear el nuevo usuario
+        Usuario::create([
+            'nombre' => $request->input('nombre'),
+            'email' => $request->input('email'),
+            'contraseña' => bcrypt($request->input('contraseña')),
+            'rol' => $request->input('rol'),
         ]);
 
-        $usuario = Usuario::findOrFail($id);
-        $usuario->name = $request->name;
-        $usuario->email = $request->email;
-        if ($request->filled('password')) {
-            $usuario->password = bcrypt($request->password);
-        }
-        $usuario->save();
-
-        return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado correctamente.');
-    }
-
-    public function destroy($id)
-    {
-        $usuario = Usuario::findOrFail($id);
-        $usuario->delete();
-
-        return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente.');
+        // Redirigir a la vista de inicio de sesión con un mensaje de éxito
+        return redirect()->route('usuarios.create')->with('success', 'Usuario creado exitosamente.');
     }
 }
