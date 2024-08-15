@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,14 +10,20 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         // Validar la solicitud
-        $credentials = $request->only('email', 'password');
-        
-        if (Auth::attempt($credentials)) {
-            // Autenticación exitosa
-            return redirect()->route('inicio');
-        }
+        $request->validate([
+            'email' => 'required|email',
+            'contraseña' => 'required|string',
+        ]);
 
-        // Autenticación fallida
-        return redirect()->route('index')->with('error', 'Credenciales inválidas. Necesitas crear una cuenta.');
+        // Intentar autenticar al usuario
+        $credentials = $request->only('email', 'contraseña');
+        if (Auth::attempt($credentials)) {
+            // Si la autenticación es exitosa, redirigir a la vista principal
+            return redirect()->route('usuarios.inicio');
+        } else {
+            // Si la autenticación falla, redirigir a la página de inicio de sesión con un mensaje de error
+            return redirect()->route('usuarios.create')
+                ->withErrors(['error' => 'Credenciales incorrectas. Necesitas crear una cuenta.']);
+        }
     }
 }
