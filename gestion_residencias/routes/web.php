@@ -1,12 +1,13 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Usuario;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AuthController;
 
 // Ruta para mostrar el formulario de inicio de sesión
-Route::get('/login', [UsuarioController::class, 'showLoginForm'])->name('usuarios.create');
+Route::get('/login', [UsuarioController::class, 'showLoginForm'])->name('index');
 
-// Ruta para manejar el inicio de sesión
+// Ruta para manejar el inicio de sesión (esto apunta a AuthController)
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 // Ruta para mostrar el formulario de creación de usuario
@@ -17,11 +18,10 @@ Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.st
 
 // Ruta para la página principal después de iniciar sesión
 Route::get('/inicio', function () {
-    return view('usuarios.inicio'); // Asegúrate de tener una vista llamada 'inicio.blade.php'
+    return view('usuarios.inicio'); 
 })->name('usuarios.inicio');
 
-// Ruta para la página de inicio de sesión
+// Ruta para la página de inicio de sesión (index)
 Route::get('/', function () {
-    return view('usuarios.index'); // Vista del formulario de inicio de sesión
+    return view('usuarios.index'); 
 })->name('index');
-

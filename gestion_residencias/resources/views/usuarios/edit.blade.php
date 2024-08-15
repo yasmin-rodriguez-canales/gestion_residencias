@@ -10,7 +10,7 @@
         @method('PUT')
         <input type="text" name="name" value="{{ $usuario->name }}" required>
         <input type="email" name="email" value="{{ $usuario->email }}" required>
-        <input type="password" name="password" placeholder="Nueva Contraseña (opcional)">
+        <input type="password" name="contraseña" placeholder="Nueva Contraseña (opcional)">
         <button type="submit">Actualizar</button>
     </form>
 </body>

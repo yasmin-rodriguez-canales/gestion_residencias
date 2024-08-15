@@ -1,29 +1,32 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
 
 class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        // Validar la solicitud
-        $request->validate([
-            'email' => 'required|email',
-            'contraseña' => 'required|string',
+        // Validar las credenciales del formulario
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'contraseña' => ['required'], 
         ]);
 
-        // Intentar autenticar al usuario
-        $credentials = $request->only('email', 'contraseña');
-        if (Auth::attempt($credentials)) {
-            // Si la autenticación es exitosa, redirigir a la vista principal
+        // Verificar si el usuario existe en la base de datos
+        $usuario = Usuario::where('email', $credentials['email'])->first();
+
+        if ($usuario && Hash::check($credentials['contraseña'], $usuario->contraseña)) {
+            // Si la contraseña es correcta
             return redirect()->route('usuarios.inicio');
         } else {
-            // Si la autenticación falla, redirigir a la página de inicio de sesión con un mensaje de error
-            return redirect()->route('usuarios.create')
-                ->withErrors(['error' => 'Credenciales incorrectas. Necesitas crear una cuenta.']);
+            // Si las credenciales son incorrectas
+            return redirect()->back()->withErrors([
+                'email' => 'Credenciales incorrectas. Por favor, intenta de nuevo o crea una cuenta.',
+            ]);
         }
     }
 }

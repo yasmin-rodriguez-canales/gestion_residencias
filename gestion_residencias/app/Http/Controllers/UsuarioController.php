@@ -8,12 +8,12 @@ class UsuarioController extends Controller
 {
     public function showLoginForm()
     {
-        return view('usuarios.index'); // Asegúrate de que el nombre de la vista sea correcto
+        return view('usuarios.index'); 
     }
 
     public function create()
     {
-        return view('usuarios.create'); // Asegúrate de que el nombre de la vista sea correcto
+        return view('usuarios.create'); 
     }
 
     public function store(Request $request)

@@ -43,6 +43,12 @@
             display: flex;
             justify-content: space-between;
         }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -51,7 +57,7 @@
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="password" name="contraseña" placeholder="Contraseña" required>
             <div class="button-container">
                 <button type="submit">Iniciar Sesión</button>
                 <a href="{{ route('usuarios.create') }}">
@@ -59,6 +65,14 @@
                 </a>
             </div>
         </form>
+
+        
+        
+        @if ($errors->any())
+            <div class="error">
+                {{ $errors->first('email') }}
+            </div>
+        @endif
     </div>
 </body>
 </html>
