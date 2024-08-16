@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Usuario;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ResidenciaController;
 
 // Ruta para mostrar el formulario de inicio de sesión
 Route::get('/login', [UsuarioController::class, 'showLoginForm'])->name('index');
@@ -15,6 +16,9 @@ Route::get('/usuarios/create', [UsuarioController::class, 'create'])->name('usua
 
 // Ruta para manejar el almacenamiento de un nuevo usuario
 Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.store');
+
+// Ruta para mostrar el formulario de creación de una nueva residencia
+Route::get('/residencias/create', [ResidenciaController::class, 'create'])->name('residencias.create');
 
 // Ruta para la página principal después de iniciar sesión
 Route::get('/inicio', function () {
