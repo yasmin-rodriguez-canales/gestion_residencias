@@ -20,6 +20,7 @@ class Mensaje extends Model
         return $this->belongsTo(Usuario::class, 'remitente_id');
     }
 
+    // Relación de 'Mensaje' con el modelo 'Usuario' como destinatario
     public function destinatario()
     {
         return $this->belongsTo(Usuario::class, 'destinatario_id');
