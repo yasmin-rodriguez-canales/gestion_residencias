@@ -20,6 +20,15 @@ Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.st
 // Ruta para mostrar el formulario de creación de una nueva residencia
 Route::get('/residencias/create', [ResidenciaController::class, 'create'])->name('residencias.create');
 
+// Ruta para mostrar el formulario de creación de una nueva residencia
+Route::get('/residencias/create', [ResidenciaController::class, 'create'])->name('residencias.create');
+
+// Ruta para manejar el almacenamiento de una nueva residencia
+Route::post('/residencias', [ResidenciaController::class, 'store'])->name('residencias.store');
+
+// Ruta para listar todas las residencias (si es necesario)
+Route::get('/residencias', [ResidenciaController::class, 'index'])->name('residencias.index');
+
 // Ruta para la página principal después de iniciar sesión
 Route::get('/inicio', function () {
     return view('usuarios.inicio'); 
