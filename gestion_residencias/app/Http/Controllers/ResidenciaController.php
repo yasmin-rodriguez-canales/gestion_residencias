@@ -7,7 +7,6 @@ use App\Models\Usuario;
 
 class ResidenciaController extends Controller
 {
-
     public function index()
     {
         // Obtener todas las residencias
@@ -17,6 +16,14 @@ class ResidenciaController extends Controller
         return view('usuarios.dueno', compact('residencias'));
     }
 
+    public function index2()
+{
+    // Obtener todas las residencias
+    $residencias = Residencia::all();
+
+    // Pasar las residencias a la vista
+    return view('usuarios.inicio', compact('residencias'));
+}
 
     public function create()
     {
@@ -43,8 +50,7 @@ class ResidenciaController extends Controller
             'disponibilidad' => $request->disponibilidad,
         ]);
 
-        // Redirigir a la vista 'dueno'
-    return redirect()->route('dueno')->with('success', 'Residencia creada con éxito.');
- }
+        // Redirigir a una página de éxito o al listado de residencias
+        return redirect()->route('dueno')->with('success', 'Residencia creada con éxito.');
+    }
 }
-

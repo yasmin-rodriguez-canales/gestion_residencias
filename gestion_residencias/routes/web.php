@@ -22,8 +22,11 @@ Route::get('/residencias/create', [ResidenciaController::class, 'create'])->name
 // Ruta para manejar el almacenamiento de una nueva residencia
 Route::post('/residencias', [ResidenciaController::class, 'store'])->name('residencias.store');
 
-// Ruta para mostrar el panel del dueño con la lista de residencias
-Route::get('/dueno', [ResidenciaController::class, 'index'])->name('dueno');
+Route::get('/dueno', [ResidenciaController::class, 'index'])->name('usuarios.dueno');
+
+Route::get('/inicio', [ResidenciaController::class, 'index2'])->name('usuarios.inicio');
+
+
 
 // Ruta para la página principal después de iniciar sesión
 Route::get('/inicio', function () {

@@ -58,8 +58,6 @@
                 <button>Nueva Residencia</button>
             </a>
             
-            <button>Modificar Residencia</button>
-            
             <button>Solicitudes Pendientes</button>
         </div>
 
