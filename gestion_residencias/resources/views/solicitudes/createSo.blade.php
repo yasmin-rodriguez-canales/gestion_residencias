@@ -22,7 +22,7 @@
         <label for="estado">Estado:</label>
         <input type="text" id="estado" name="estado" required>
         <!-- Otros campos según tus necesidades -->
-        <button type="submit">Guardar</button>
+        <button type="submit">Save</button>
     </form>
     <a href="{{ route('solicitudes.index') }}">Volver</a>
 </body>

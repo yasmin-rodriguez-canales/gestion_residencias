@@ -12,6 +12,7 @@ class Residencia extends Model
         'dueno_id', 'descripcion', 'precio', 'disponibilidad',
     ];
 
+     // Relación de 'Residencia' con el modelo 'Usuario' como dueño de la residencia
     public function dueno()
     {
         return $this->belongsTo(Usuario::class, 'dueno_id');
