@@ -13,6 +13,7 @@ class Solicitud extends Model
         'estudiante_id', 'residencia_id', 'fecha_solicitud', 'estado',
     ];
 
+    // Relación de 'Solicitud' con el modelo 'Usuario' como estudiante que realiza la solicitud
     public function estudiante()
     {
         return $this->belongsTo(Usuario::class, 'estudiante_id');
