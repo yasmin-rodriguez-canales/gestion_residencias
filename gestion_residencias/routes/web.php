@@ -24,8 +24,13 @@ Route::post('/residencias', [ResidenciaController::class, 'store'])->name('resid
 
 Route::get('/dueno', [ResidenciaController::class, 'index'])->name('usuarios.dueno');
 
-Route::get('/inicio', [ResidenciaController::class, 'index2'])->name('usuarios.inicio');
+Route::get('/dueno/calendario', [App\Http\Controllers\ResidenciaController::class, 'calendario'])->name('residencias.calendario');
 
+Route::get('/calendario', [ResidenciaController::class, 'calendario'])->name('residencias.calendario');
+
+Route::get('/dueno', [ResidenciaController::class, 'index'])->name('dueno');
+
+Route::get('/dueno', [ResidenciaController::class, 'index'])->name('usuarios.dueno');
 
 
 // Ruta para la página principal después de iniciar sesión

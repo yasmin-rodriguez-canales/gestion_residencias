@@ -16,7 +16,7 @@
         }
         .container {
             text-align: center;
-            width: 80%; /* Ajusta el ancho si es necesario */
+            width: 80%; 
         }
         .button-container {
             margin-top: 20px;
@@ -57,6 +57,10 @@
             <a href="{{ route('residencias.create') }}">
                 <button>Nueva Residencia</button>
             </a>
+            
+            <a href="{{ route('residencias.calendario') }}" target="_blank">
+    <button>Ver calendario</button>
+</a>
             
             <button>Solicitudes Pendientes</button>
         </div>

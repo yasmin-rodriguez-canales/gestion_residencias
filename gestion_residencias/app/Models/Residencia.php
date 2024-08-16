@@ -16,4 +16,5 @@ class Residencia extends Model
     {
         return $this->belongsTo(Usuario::class, 'dueno_id');
     }
+    
 }
