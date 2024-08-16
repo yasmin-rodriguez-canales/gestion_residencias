@@ -1,6 +1,5 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Usuario;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ResidenciaController;
@@ -17,26 +16,19 @@ Route::get('/usuarios/create', [UsuarioController::class, 'create'])->name('usua
 // Ruta para manejar el almacenamiento de un nuevo usuario
 Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.store');
 
-// Ruta para mostrar el formulario de creación de una nueva residencia
-Route::get('/residencias/create', [ResidenciaController::class, 'create'])->name('residencias.create');
-
-// Ruta para mostrar el formulario de creación de una nueva residencia
+// Ruta para mostrar el formulario de creación de residencia
 Route::get('/residencias/create', [ResidenciaController::class, 'create'])->name('residencias.create');
 
 // Ruta para manejar el almacenamiento de una nueva residencia
 Route::post('/residencias', [ResidenciaController::class, 'store'])->name('residencias.store');
 
-// Ruta para listar todas las residencias (si es necesario)
-Route::get('/residencias', [ResidenciaController::class, 'index'])->name('residencias.index');
+// Ruta para mostrar el panel del dueño con la lista de residencias
+Route::get('/dueno', [ResidenciaController::class, 'index'])->name('dueno');
 
 // Ruta para la página principal después de iniciar sesión
 Route::get('/inicio', function () {
     return view('usuarios.inicio'); 
 })->name('usuarios.inicio');
-
-Route::get('/dueno', function () {
-    return view('usuarios.dueno'); 
-})->name('usuarios.dueno');
 
 // Ruta para la página de inicio de sesión (index)
 Route::get('/', function () {

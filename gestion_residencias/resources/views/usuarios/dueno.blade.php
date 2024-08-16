@@ -16,6 +16,7 @@
         }
         .container {
             text-align: center;
+            width: 80%; /* Ajusta el ancho si es necesario */
         }
         .button-container {
             margin-top: 20px;
@@ -33,6 +34,19 @@
         button:hover {
             background-color: #0056b3;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
     </style>
 </head>
 <body>
@@ -44,12 +58,33 @@
                 <button>Nueva Residencia</button>
             </a>
             
-                <button>Modificar Residencia</button>
+            <button>Modificar Residencia</button>
             
-            
-                <button>Solicitudes Pendientes</button>
-            
+            <button>Solicitudes Pendientes</button>
         </div>
+
+        <h2>Residencias Registradas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>No. Registro</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Disponibilidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($residencias as $residencia)
+                    <tr>
+                        <td>{{ $residencia->id }}</td>
+                        <td>{{ $residencia->descripcion }}</td>
+                        <td>{{ $residencia->precio }}</td>
+                        <td>{{ $residencia->disponibilidad }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
     </div>
 </body>
 </html>

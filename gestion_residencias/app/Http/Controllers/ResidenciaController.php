@@ -14,8 +14,9 @@ class ResidenciaController extends Controller
         $residencias = Residencia::all();
 
         // Pasar las residencias a la vista
-        return view('residencias.index', compact('residencias'));
+        return view('usuarios.dueno', compact('residencias'));
     }
+
 
     public function create()
     {
@@ -42,8 +43,8 @@ class ResidenciaController extends Controller
             'disponibilidad' => $request->disponibilidad,
         ]);
 
-        // Redirigir a una página de éxito o al listado de residencias
-        return redirect()->route('residencias.index')->with('success', 'Residencia creada con éxito.');
-    }
+        // Redirigir a la vista 'dueno'
+    return redirect()->route('dueno')->with('success', 'Residencia creada con éxito.');
+ }
 }
 
