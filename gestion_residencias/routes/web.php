@@ -21,6 +21,10 @@ Route::get('/inicio', function () {
     return view('usuarios.inicio'); 
 })->name('usuarios.inicio');
 
+Route::get('/dueno', function () {
+    return view('usuarios.dueno'); 
+})->name('usuarios.dueno');
+
 // Ruta para la página de inicio de sesión (index)
 Route::get('/', function () {
     return view('usuarios.index'); 

@@ -31,7 +31,11 @@ class UsuarioController extends Controller
             'contraseña' => bcrypt($request->input('contraseña')),
             'rol' => $request->input('rol'),
         ]);
-
-        return redirect()->route('usuarios.inicio')->with('success', 'Usuario creado exitosamente.');
+        if ($request->input('rol') == 'Dueño') {
+            return redirect()->route('usuarios.dueno')->with('success', 'Usuario creado exitosamente.');
+        }
+        else {
+            return redirect()->route('usuarios.inicio')->with('success', 'Usuario creado exitosamente.');
+        }
     }
 }

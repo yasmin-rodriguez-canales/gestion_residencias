@@ -21,7 +21,11 @@ class AuthController extends Controller
 
         if ($usuario && Hash::check($credentials['contraseña'], $usuario->contraseña)) {
             // Si la contraseña es correcta
-            return redirect()->route('usuarios.inicio');
+            if ($usuario->rol == 'Dueño') {
+                return redirect()->route('usuarios.dueno');
+            }else{
+                return redirect()->route('usuarios.inicio');
+            }
         } else {
             // Si las credenciales son incorrectas
             return redirect()->back()->withErrors([

@@ -8,7 +8,7 @@
     <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST">
         @csrf
         @method('PUT')
-        <input type="text" name="name" value="{{ $usuario->name }}" required>
+        <input type="text" name="nombre" value="{{ $usuario->nombre }}" required>
         <input type="email" name="email" value="{{ $usuario->email }}" required>
         <input type="password" name="contraseña" placeholder="Nueva Contraseña (opcional)">
         <button type="submit">Actualizar</button>
