@@ -79,35 +79,25 @@ li {
 </head>
 <body>
     <div class="container">
-        <h1>Registrar Habitaciones Disponibles</h1>
+        <h1>Registrar Habitacion</h1>
         <form id="roomRegistrationForm">
-            <label for="residence">Residencia:</label>
-            <select id="residence" name="residence">
-                <option value="residencia1">Residencia 1</option>
-                <option value="residencia2">Residencia 2</option>
-                <!-- Añadir más residencias según sea necesario -->
-            </select>
-            
-            <label for="roomNumber">Número de Habitación:</label>
-            <input type="text" id="roomNumber" name="roomNumber" required>
             
             <label for="roomDescription">Descripción:</label>
             <textarea id="roomDescription" name="roomDescription" required></textarea>
             
             <label for="roomPrice">Precio:</label>
             <input type="number" id="roomPrice" name="roomPrice" required>
+
+            <label for="disponibilidad">Disponibilidad:</label>
+            <select id="disponibilidad" name="disponibilidad">
+                <option value="estado1">Disponible</option>
+                <option value="estado2">No disponible</option>
+                <!-- Añadir más residencias según sea necesario -->
+            </select>
             
             <button type="submit">Registrar Habitación</button>
         </form>
         
-        <div id="availableRooms">
-            <h2>Habitaciones Disponibles</h2>
-            <ul>
-                <li>Habitación 101 - Descripción breve - $300</li>
-                <li>Habitación 102 - Descripción breve - $350</li>
-                <!-- Mostrar habitaciones reales según sea necesario -->
-            </ul>
-        </div>
     </div>
 </body>
 </html>
